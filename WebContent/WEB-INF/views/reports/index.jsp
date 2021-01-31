@@ -8,7 +8,8 @@
                 <c:out value="${flush}"></c:out>
             </div>
         </c:if>
-        <h2>日報一覧</h2>
+        <h2>日報管理システムへようこそ</h2>
+        <h3>日報一覧</h3>
 
         <table id="report_list">
             <tbody>
@@ -42,7 +43,7 @@
                         <c:out value="${i}" />&nbsp;
                     </c:when>
                     <c:otherwise>
-                        <a href="<c:url value='/reports/index?page=${i}' />"><c:out value="${i}" /></a>&nbsp;
+                        <a href="<c:url value='/?page=${i}' />"><c:out value="${i}" /></a>&nbsp;
                     </c:otherwise>
                 </c:choose>
             </c:forEach>
