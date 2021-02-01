@@ -59,7 +59,7 @@ public class TopPageIndexServlet extends HttpServlet {
 
         request.setAttribute("reports",reports);
         request.setAttribute("reports_count",reports_count);
-        request.setAttribute("psge",page);
+        request.setAttribute("page",page);
 
         if(request.getSession().getAttribute("flush")!=null){
 
