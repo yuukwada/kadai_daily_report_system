@@ -22,9 +22,17 @@
 <input type="text" name="title" value="${report.title}" />
 <br /><br />
 
-<label for="content">内容</label><br />
+<label for="content">日報内容</label><br />
 <textarea name="content" rows="10" cols="50">${report.content}</textarea>
 <br /><br />
+
+<label for="commuting_at">出勤時間</label><br/>
+<input type="time" name="commuting_at" value="${report.commuting_at}"/>
+<br/><br/>
+
+<label for="leaving_at">退勤時間</label><br/>
+<input type="time" name="leaving_at" value="${report.leaving_at}"/>
+<br/><br/>
 
 <input type="hidden" name="_token" value="${_token}" />
 <button type="submit">投稿</button>

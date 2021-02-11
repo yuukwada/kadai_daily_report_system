@@ -1,12 +1,14 @@
 package models;
 
 import java.sql.Timestamp;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
@@ -57,6 +59,19 @@ public class Employee {
 
     @Column(name = "delete_flag", nullable = false)
     private Integer delete_flag;
+
+    @ManyToMany(mappedBy="favorite_Employee")
+    private List<Report> favorite_Report;
+
+
+    public List<Report> getFavorite_Report() {
+        return favorite_Report;
+    }
+
+    public void setFavorite_Report(List<Report> favorite_Report) {
+        this.favorite_Report = favorite_Report;
+    }
+
 
     public Integer getId() {
         return id;
@@ -121,5 +136,7 @@ public class Employee {
     public void setDelete_flag(Integer delete_flag) {
         this.delete_flag = delete_flag;
     }
+
+
 }
 

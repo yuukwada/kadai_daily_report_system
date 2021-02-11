@@ -148,11 +148,14 @@ table#report_list .report_date {
 }
 
 table#report_list .report_title {
-    width: 37%;
+    width: 40%;
 }
 
 table#report_list .report_action {
-    width: 13%;
+    width: 15%;
+}
+table#report_list .report_favorite{
+    width:3%;
 }
 
 pre {
@@ -161,4 +164,37 @@ pre {
 
 h3 {
     font-size: larger;
+}
+
+table#favorite_report_list th {
+    font-weight: bold;
+    padding: 10px 2%;
+}
+
+table#favorite_report_list .report_name {
+    width: 20%;
+    padding: 10px 2%;
+}
+table#favorite_report_list .report_date {
+    width: 20%;
+}
+
+table#favorite_report_list .report_title {
+    width: 40%;
+}
+
+table#favorite_report_list .report_action {
+    width: 15%;
+}
+
+button.follow{
+    background-color:#FFB6C1;
+    font-weight:bold;
+    color:#fff;
+}
+
+button.antifollow{
+    background-color:#6495ED;
+    font-weight:bold;
+    color:#fff;
 }

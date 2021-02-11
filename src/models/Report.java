@@ -1,7 +1,9 @@
 package models;
 
 import java.sql.Date;
+import java.sql.Time;
 import java.sql.Timestamp;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -9,7 +11,9 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.Lob;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
@@ -64,6 +68,28 @@ public class Report {
 
     @Column(name = "updated_at", nullable = false)
     private Timestamp updated_at;
+
+    @Column(name="commuting_at")
+    private Time commuting_at;
+
+    @Column(name="leaving_at")
+    private Time leaving_at;
+
+
+    @ManyToMany
+    @JoinTable(name="favorite",joinColumns=@JoinColumn(name="favorite_Report"),
+                               inverseJoinColumns=@JoinColumn(name="favorite_Employee"))
+    private List<Employee> favorite_Employee;
+
+
+    public List<Employee> getFavorite_Employee() {
+        return favorite_Employee;
+    }
+
+    public void setFavorite_Employee(List<Employee> favorite_Employee) {
+        this.favorite_Employee = favorite_Employee;
+    }
+
 
     public Integer getId() {
         return id;
@@ -120,6 +146,23 @@ public class Report {
     public void setUpdated_at(Timestamp updated_at) {
         this.updated_at = updated_at;
     }
+
+    public Time getCommuting_at() {
+        return commuting_at;
+    }
+
+    public void setCommuting_at(Time commuting_at) {
+        this.commuting_at = commuting_at;
+    }
+
+    public Time getLeaving_at() {
+        return leaving_at;
+    }
+
+    public void setLeaving_at(Time leaving_at) {
+        this.leaving_at = leaving_at;
+    }
+
 
 
 }

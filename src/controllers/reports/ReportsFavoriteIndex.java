@@ -16,16 +16,16 @@ import models.Report;
 import utils.DBUtil;
 
 /**
- * Servlet implementation class ReportsIndexServlet
+ * Servlet implementation class ReportsFavoriteIndex
  */
-@WebServlet(name = "reports/index", urlPatterns = { "/reports/index" })
-public class ReportsIndexServlet extends HttpServlet {
+@WebServlet("/reports/favorite_index")
+public class ReportsFavoriteIndex extends HttpServlet {
     private static final long serialVersionUID = 1L;
 
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ReportsIndexServlet() {
+    public ReportsFavoriteIndex() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -49,14 +49,6 @@ public class ReportsIndexServlet extends HttpServlet {
 
 
 
-        List<Report>reports=em.createNamedQuery("getAllReports",Report.class)
-                              .setFirstResult(15*(page-1))
-                              .setMaxResults(15)
-                              .getResultList();
-
-        long reports_count=(long)em.createNamedQuery("getReportsCount",Long.class)
-                                       .getSingleResult();
-
         long favorites_count=(long)em.createNamedQuery("getFavoriteCounts",Long.class)
                                           .setParameter("employee",login_employee)
                                           .getSingleResult();
@@ -69,19 +61,15 @@ public class ReportsIndexServlet extends HttpServlet {
 
            List<Report> favorited_reports =em.createNamedQuery("getFavoritedReports",Report.class)
                                               .setParameter("employee",login_employee)
+                                              .setFirstResult(15*(page-1))
+                                              .setMaxResults(15)
                                               .getResultList();
-
-
-
            em.close();
            request.setAttribute("favorited_reports",favorited_reports);
-
         }
 
 
 
-        request.setAttribute("reports", reports);
-        request.setAttribute("reports_count", reports_count);
         request.setAttribute("page", page);
         request.setAttribute("favorites_count",favorites_count);
 
@@ -91,9 +79,12 @@ public class ReportsIndexServlet extends HttpServlet {
             request.getSession().removeAttribute("flush");
         }
 
-        RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/reports/index.jsp");
+        RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/reports/favorite_index.jsp");
         rd.forward(request, response);
     }
 
 
-}
+
+    }
+
+

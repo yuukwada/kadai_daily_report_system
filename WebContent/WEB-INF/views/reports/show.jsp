@@ -24,6 +24,14 @@
                             </td>
                         </tr>
                         <tr>
+                            <th>出勤時間</th>
+                            <td> <c:out value="${report.commuting_at}"/> </td>
+                        </tr>
+                        <tr>
+                            <th>退勤時間</th>
+                            <td> <c:out value="${report.leaving_at}"/> </td>
+                        </tr>
+                        <tr>
                             <th>登録日時</th>
                             <td>
                                 <fmt:formatDate value="${report.created_at}" pattern="yyyy-MM-dd HH:mm:ss" />
@@ -49,6 +57,7 @@
             </c:otherwise>
         </c:choose>
 
-        <p><a href="<c:url value="/reports/index" />">一覧に戻る</a></p>
+        <p><a href="<c:url value="/reports/index" />">日報一覧に戻る</a></p>
+        <p><a href="<c:url value="reports/favorite_index" />">フォローした日報一覧に戻る</a></p>
     </c:param>
 </c:import>
