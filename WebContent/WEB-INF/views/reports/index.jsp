@@ -39,22 +39,36 @@
                                 <c:set var="check_flag" value="1" />
                             </c:if>
 
+                            <c:if test="${report.employee.id == login_employee.id}">
+                                <c:set var="check_flag" value="2"/>
+                            </c:if>
+
+
                         </c:forEach>
+
+                        <c:if test="${check_flag==2 }">
+                            -
+                        </c:if>
 
                         <c:if test="${check_flag==1}">
                             <form method="POST" action="<c:url value="/reports/favorite_destroy"/>">
                                 <input type="hidden" name="report_id"value="${report.id}">
-                                <button class="follow" type="submit">いいね!を解除する</button>
+                                <button class="antifollow" type="submit">いいね!を解除する</button>
                             </form>
                         </c:if>
                         <c:if test="${check_flag==0}">
                              <form method="POST" action="<c:url value="/reports/favorite"/>">
                                 <input type="hidden" name="report_id"value="${report.id}">
-                                <button class="antifollow" type="submit">いいね!する</button>
+                                <button class="follow" type="submit">いいね!する</button>
                              </form>
                         </c:if>
 
                         </td>
+
+
+
+
+
                     </tr>
                 </c:forEach>
             </tbody>
