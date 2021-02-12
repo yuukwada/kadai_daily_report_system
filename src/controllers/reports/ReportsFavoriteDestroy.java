@@ -40,6 +40,9 @@ public class ReportsFavoriteDestroy extends HttpServlet {
         Employee login_employee = (Employee)request.getSession().getAttribute("login_employee");
         Report report=em.find(Report.class,Integer.parseInt(request.getParameter("report_id")));
 
+        int favorited_count=(Integer.parseInt(request.getParameter("favorited_count")));
+        report.setFavorited_count(favorited_count -1);
+
         Integer favorite_id=em.createNamedQuery("getFavoriteId",Integer.class)
                                .setParameter("report",report)
                                .setParameter("employee",login_employee)

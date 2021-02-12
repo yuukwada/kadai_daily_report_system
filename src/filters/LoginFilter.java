@@ -10,6 +10,7 @@ import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import models.Employee;
@@ -43,13 +44,26 @@ public class LoginFilter implements Filter {
         if(!servlet_path.matches("/css.*")) {
             HttpSession session = ((HttpServletRequest)request).getSession();
 
-
             Employee e = (Employee)session.getAttribute("login_employee");
 
+            if(!servlet_path.equals("/login")) {
 
+                if(e == null) {
+                    ((HttpServletResponse)response).sendRedirect(context_path + "/login");
+                    return;
+                }
 
+                if(servlet_path.matches("/employees.*") && e.getAdmin_flag() == 0) {
+                    ((HttpServletResponse)response).sendRedirect(context_path + "/");
+                    return;
+                }
 
-
+            } else {
+                if(e != null) {
+                    ((HttpServletResponse)response).sendRedirect(context_path + "/");
+                    return;
+                }
+            }
         }
 
         chain.doFilter(request, response);

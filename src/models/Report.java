@@ -75,6 +75,9 @@ public class Report {
     @Column(name="leaving_at")
     private Time leaving_at;
 
+    @Column(name="favorited_count")
+    private int favorited_count=0;
+
 
     @ManyToMany
     @JoinTable(name="favorite",joinColumns=@JoinColumn(name="favorite_Report"),
@@ -161,6 +164,14 @@ public class Report {
 
     public void setLeaving_at(Time leaving_at) {
         this.leaving_at = leaving_at;
+    }
+
+    public int getFavorited_count() {
+        return favorited_count;
+    }
+
+    public void setFavorited_count(int favorited_count) {
+        this.favorited_count = favorited_count;
     }
 
 
