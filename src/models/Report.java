@@ -7,6 +7,7 @@ import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -79,7 +80,7 @@ public class Report {
     private int favorited_count=0;
 
 
-    @ManyToMany
+    @ManyToMany(fetch=FetchType.EAGER)
     @JoinTable(name="favorite",joinColumns=@JoinColumn(name="favorite_Report"),
                                inverseJoinColumns=@JoinColumn(name="favorite_Employee"))
     private List<Employee> favorite_Employee;

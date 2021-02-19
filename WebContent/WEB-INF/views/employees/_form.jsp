@@ -31,6 +31,11 @@
 <input type="password" name="password" />
 <br /><br />
 
+<label for="image">イメージ画像</label><br />
+
+<input type="file" name="image" value="${employee.image}" />
+<br /><br />
+
 <label for="admin_flag">権限</label><br />
 
 <select name="admin_flag">
@@ -38,6 +43,7 @@
     <option value="1"<c:if test="${employee.admin_flag == 1}"> selected</c:if>>管理者</option>
 </select>
 <br /><br />
+
 
 
 <input type="hidden" name="_token" value="${_token}" />

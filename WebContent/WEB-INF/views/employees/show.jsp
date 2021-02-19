@@ -7,6 +7,10 @@
             <c:when test="${employee != null}">
                 <h2>id : ${employee.id} の従業員情報　詳細ページ</h2>
 
+               <div class="profile_image">
+               <img src="${pageContext.request.contextPath}/uploaded/${employee.image}">
+               </div>
+
                 <table>
                     <tbody>
                         <tr>

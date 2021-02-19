@@ -23,6 +23,7 @@ public class EmployeeValidator {
     errors.add(name_error);
     }
 
+
     String password_error = validatePassword(e.getPassword(), passwordCheckFlag);
     if(!password_error.equals("")) {
         errors.add(password_error);
@@ -32,10 +33,11 @@ public class EmployeeValidator {
 
     }
 
-    private static String validateCode(String code,Boolean codeDuplicateCheckFlag){
+    private static String validateCode(String code,Boolean codeDuplicateCheckFlag ){
         if(code == null || code.equals("")){
             return "社員番号を入力してください。";
         }
+
 
         if(codeDuplicateCheckFlag){
             EntityManager em=DBUtil.createEntityManager();
@@ -72,8 +74,6 @@ public class EmployeeValidator {
         return "";
 
     }
-
-
 
 
 }

@@ -158,18 +158,18 @@ table#report_list .report_date {
 }
 
 table#report_list .report_title {
-    width: 30%;
+    width: 23%;
 }
 
 table#report_list .report_action {
-    width: 30%;
+    width: 14%;
 }
 
 table#report_list .favorite{
-    width:5%;
+    width:17%;
 }
 table#report_list .favorited_count{
-    width:5%;
+    width:11%;
 }
 
 table#favorite_report_list th {
@@ -205,4 +205,13 @@ button.antifollow{
     background-color:#6495ED;
     font-weight:bold;
     color:#fff;
+}
+
+img{
+    height:400px;
+    width:280px;
+}
+
+.profile_image{
+    text-align:center;
 }

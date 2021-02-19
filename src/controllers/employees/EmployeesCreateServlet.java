@@ -7,10 +7,12 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.Part;
 
 import models.Employee;
 import models.validators.EmployeeValidator;
@@ -21,6 +23,7 @@ import utils.EncryptUtil;
  * Servlet implementation class EmployeesCreateServlet
  */
 @WebServlet(name = "employees/create", urlPatterns = { "/employees/create" })
+@MultipartConfig()
 public class EmployeesCreateServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
 
@@ -61,6 +64,11 @@ public class EmployeesCreateServlet extends HttpServlet {
             e.setUpdated_at(currentTime);
             e.setDelete_flag(0);
 
+            Part part=(request.getPart("image"));
+            String image=this.getFileName(part);
+            part.write(getServletContext().getRealPath("/uploaded") + "/" + image);
+            e.setImage(image);
+
             List<String> errors = EmployeeValidator.validate(e, true, true);
             if(errors.size() > 0) {
 
@@ -85,6 +93,17 @@ public class EmployeesCreateServlet extends HttpServlet {
             }
 
         }
+    }
+    private String getFileName(Part part) {
+        String name = null;
+        for (String dispotion : part.getHeader("Content-Disposition").split(";")) {
+            if (dispotion.trim().startsWith("filename")) {
+                name = dispotion.substring(dispotion.indexOf("=") + 1).replace("\"", "").trim();
+                name = name.substring(name.lastIndexOf("\\") + 1);
+                break;
+            }
+        }
+        return name;
     }
 
 

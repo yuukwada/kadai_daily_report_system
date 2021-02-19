@@ -6,7 +6,7 @@
 
         <h2>従業員新規登録ページ</h2>
 
-        <form method="POST" action="<c:url value="/employees/create" />">
+        <form method="POST" enctype="multipart/form-data" action="<c:url value="/employees/create" />">
             <c:import url="_form.jsp" />
         </form>
 

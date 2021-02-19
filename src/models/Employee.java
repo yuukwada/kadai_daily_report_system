@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -60,7 +61,10 @@ public class Employee {
     @Column(name = "delete_flag", nullable = false)
     private Integer delete_flag;
 
-    @ManyToMany(mappedBy="favorite_Employee")
+    @Column(name="image")
+    private String image;
+
+    @ManyToMany(mappedBy="favorite_Employee",fetch=FetchType.EAGER)
     private List<Report> favorite_Report;
 
 
@@ -135,6 +139,14 @@ public class Employee {
 
     public void setDelete_flag(Integer delete_flag) {
         this.delete_flag = delete_flag;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
     }
 
 
