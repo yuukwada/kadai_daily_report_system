@@ -46,8 +46,20 @@ public class ReportsUpdateServlet extends HttpServlet {
             r.setTitle(request.getParameter("title"));
             r.setContent(request.getParameter("content"));
             r.setUpdated_at(new Timestamp(System.currentTimeMillis()));
-            r.setCommuting_at(Time.valueOf(request.getParameter("commuting_at")+":00"));
-            r.setLeaving_at(Time.valueOf(request.getParameter("leaving_at")+":00"));
+
+            if(!(request.getParameter("commuting_at").equals("")) && !(request.getParameter("leaving_at").equals(""))){
+                Time commuting_at=Time.valueOf(request.getParameter("commuting_at")+":00");
+                Time leaving_at=Time.valueOf(request.getParameter("leaving_at")+":00");
+                commuting_at.toLocalTime();
+                leaving_at.toLocalTime();
+                Boolean time_check= commuting_at.before(leaving_at);
+
+                if(time_check){
+                        r.setCommuting_at(Time.valueOf(request.getParameter("commuting_at")+":00"));
+                        r.setLeaving_at(Time.valueOf(request.getParameter("leaving_at")+":00"));
+                }
+
+            }
 
             List<String>errors=ReportValidator.validate(r);
             if(errors.size()>0){

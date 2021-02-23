@@ -25,11 +25,11 @@
                         </tr>
                         <tr>
                             <th>出勤時間</th>
-                            <td> <c:out value="${report.commuting_at}"/> </td>
+                            <td> <fmt:formatDate value="${report.commuting_at}" pattern="HH:mm"/></td>
                         </tr>
                         <tr>
                             <th>退勤時間</th>
-                            <td> <c:out value="${report.leaving_at}"/> </td>
+                            <td> <fmt:formatDate value="${report.leaving_at}" pattern="HH:mm"/></td>
                         </tr>
                         <tr>
                             <th>登録日時</th>

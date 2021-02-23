@@ -64,10 +64,17 @@ public class EmployeesCreateServlet extends HttpServlet {
             e.setUpdated_at(currentTime);
             e.setDelete_flag(0);
 
-            Part part=(request.getPart("image"));
-            String image=this.getFileName(part);
-            part.write(getServletContext().getRealPath("/uploaded") + "/" + image);
-            e.setImage(image);
+
+            if(request.getPart("image").getSize() != 0){
+                Part part=(request.getPart("image"));
+                String image=this.getFileName(part);
+                part.write(getServletContext().getRealPath("/uploaded") + "/" + image);
+                 e.setImage(image);
+
+                }
+
+
+
 
             List<String> errors = EmployeeValidator.validate(e, true, true);
             if(errors.size() > 0) {

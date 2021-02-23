@@ -74,10 +74,14 @@ public class EmployeesUpdateServlet extends HttpServlet {
             e.setUpdated_at(new Timestamp(System.currentTimeMillis()));
             e.setDelete_flag(0);
 
-            Part part=(request.getPart("image"));
-            String image=this.getFileName(part);
-            part.write(getServletContext().getRealPath("/uploaded") + "/" + image);
-            e.setImage(image);
+
+            if(request.getPart("image").getSize() != 0){
+                Part part=(request.getPart("image"));
+                String image=this.getFileName(part);
+                part.write(getServletContext().getRealPath("/uploaded") + "/" + image);
+                e.setImage(image);
+
+            }
 
 
             List<String> errors = EmployeeValidator.validate(e, codeDuplicateCheckFlag, passwordCheckFlag);

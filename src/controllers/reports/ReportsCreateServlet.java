@@ -62,11 +62,19 @@ public class ReportsCreateServlet extends HttpServlet {
             r.setCreated_at(currentTime);
             r.setUpdated_at(currentTime);
 
+            if(!(request.getParameter("commuting_at").equals("")) && !(request.getParameter("leaving_at").equals(""))){
+                Time commuting_at=Time.valueOf(request.getParameter("commuting_at")+":00");
+                Time leaving_at=Time.valueOf(request.getParameter("leaving_at")+":00");
+                commuting_at.toLocalTime();
+                leaving_at.toLocalTime();
+                Boolean time_check= commuting_at.before(leaving_at);
 
-            System.out.println(request.getParameter("commuting_at"));
+                if(time_check){
+                        r.setCommuting_at(Time.valueOf(request.getParameter("commuting_at")+":00"));
+                            r.setLeaving_at(Time.valueOf(request.getParameter("leaving_at")+":00"));
+                }
 
-            r.setCommuting_at(Time.valueOf(request.getParameter("commuting_at")+":00"));
-            r.setLeaving_at(Time.valueOf(request.getParameter("leaving_at")+":00"));
+            }
 
 
             List<String>errors =ReportValidator.validate(r);

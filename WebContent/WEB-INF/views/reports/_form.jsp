@@ -27,11 +27,11 @@
 <br /><br />
 
 <label for="commuting_at">出勤時間</label><br/>
-<input type="time" name="commuting_at" value="${report.commuting_at}"/>
+<input type="time" name="commuting_at" pattern="(0[0-9]|1[0-9]|2[0-3]):([0-5][0-9])" title="hh(時) : mm(分)[00:00～23:59]" value="<fmt:formatDate value="${report.commuting_at}" pattern="HH:mm"/>"/>
 <br/><br/>
 
 <label for="leaving_at">退勤時間</label><br/>
-<input type="time" name="leaving_at" value="${report.leaving_at}"/>
+<input type="time" name="leaving_at" pattern="(0[0-9]|1[0-9]|2[0-3]):([0-5][0-9])" title="hh(時) : mm(分)[00:00～23:59]" value="<fmt:formatDate value="${report.leaving_at}" pattern="HH:mm"/>"/>
 <br/><br/>
 
 <input type="hidden" name="_token" value="${_token}" />

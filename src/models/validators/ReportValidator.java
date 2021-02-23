@@ -1,5 +1,6 @@
 package models.validators;
 
+import java.sql.Time;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -20,6 +21,15 @@ public class ReportValidator {
         if(!content_error.equals("")){
             errors.add(content_error);
         }
+
+        String commuting_at_error=_validateWorking_at(r.getCommuting_at(),r.getLeaving_at());
+        if(!commuting_at_error.equals("")){
+            errors.add(commuting_at_error);
+        }
+
+
+
+
 
         return errors;
 
@@ -42,6 +52,16 @@ public class ReportValidator {
 
         return "";
     }
+
+    private static String _validateWorking_at(Time commuting_at,Time leaving_at) {
+        if(commuting_at == null || commuting_at.equals("") || leaving_at == null || leaving_at.equals("") ) {
+            return "”出勤”/”退勤”時間を入力してください。";
+            }
+
+
+        return "";
+    }
+
 
 
 

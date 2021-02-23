@@ -37,13 +37,6 @@
 
                         <c:set var="check_flag" value="0" />
 
-                        <c:if test="${report.employee.id == login_employee.id}">
-                              <c:set var="check_flag" value="2"/>
-                        </c:if>
-
-                        <c:if test="${check_flag==2 }">
-                            -
-                        </c:if>
 
                         <c:forEach var="favorited_report" items="${favorited_reports}">
 
@@ -51,9 +44,6 @@
                                 <c:set var="check_flag" value="1" />
                             </c:if>
 
-                            <c:if test="${report.employee.id == login_employee.id}">
-                                <c:set var="check_flag" value="2"/>
-                            </c:if>
 
                         </c:forEach>
 
